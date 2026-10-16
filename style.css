@@ -310,9 +310,8 @@ ul {
     align-items: stretch;
   }
   .nav-tabs {
-    justify-content: center;
+    justify-content: center;}
   }
-=======
 :root {
   --primary: #6366f1;
   --text: #1f2937;
@@ -627,5 +626,5 @@ ul {
   .nav-tabs {
     justify-content: center;
   }
->>>>>>> 88b26e3899d4c49af1f8378ddb0c21ba3c0037e5
+
 }

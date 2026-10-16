@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // HITUNG STATISTIK & PROGRES
-    function hitung Statistik() {
+    function hitungStatistik() {
         const total = tasks.length;
         if (total === 0) {
             angkaStat.textContent = "0";
