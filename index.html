@@ -1,118 +1,162 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BubuList - Terpadu</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BubuList- Terpadu</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px;">
-    
-    <main class="main-container" style="width: 100%; max-width: 550px;">
+<body>
+
+  <!-- NAVIGASI UTAMA (Muncul setelah masuk aplikasi) -->
+  <header class="main-header" id="mainHeader" style="display: none; justify-content: space-between; align-items: center; max-width: 1000px; margin: 20px auto; padding: 12px 20px; background: white; border-radius: 14px; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08); border: 1px solid var(--border);">
+    <div class="brand">
+      <h2 style="margin:0; font-size: 1.1rem; color: var(--primary);">📌 BubuList</h2>
+    </div>
+    <nav class="nav-tabs" style="display: flex; gap: 8px;">
+      <button type="button" class="tab-btn aktif" data-target="view-tugas" style="background: var(--primary); color: white; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;">📋 Tugas</button>
+      <button type="button" class="tab-btn" data-target="view-statistik" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;">📊 Statistik</button>
+      <button type="button" class="tab-btn" data-target="view-tentang" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;">ℹ️ Tentang</button>
+      <button type="button" class="tab-btn" data-target="view-musik" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;">🎵 Musik</button>
+    </nav>
+  </header>
+
+  <main class="main-container" style="max-width: 1000px; margin: 0 auto;">
+
+    <!-- TAMPILAN 1: BERANDA / HALAMAN DEPAN & LOGIN -->
+    <section id="view-beranda" class="view-section aktif" style="display: block; text-align: center; padding-top: 40px;">
+      <div class="card" style="max-width: 500px; margin: 0 auto; padding: 40px;">
+        <h1 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--primary);">🚀 Selamat Datang di Bubulist</h1>
+        <p style="color: #64748b; margin-bottom: 24px;">Kelola tugas kuliah dan aktivitas harianmu dengan lebih terstruktur dan interaktif.</p>
         
-        <!-- HEADER IDENTITAS & TUJUAN PEMBUATAN -->
-        <header style="text-align: center; margin-bottom: 20px; background: rgba(255, 255, 255, 0.8); padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-            <h1 style="color: #4f46e5; font-size: 22px; margin: 0 0 5px 0;">✨ BubuList Terpadu ✨</h1>
-            <p style="color: #334155; font-size: 13px; margin: 0 0 8px 0; font-weight: 600;">Dibuat oleh: Tari | Multimedia dan Broadcasting (MMB) PENS</p>
-            <p style="color: #64748b; font-size: 12px; margin: 0; line-height: 1.4;">
-                <strong>Tujuan Pembuatan:</strong> Aplikasi web interaktif untuk membantu mahasiswa mengelola daftar tugas kuliah, memantau progres harian, serta menyediakan fitur pemutar musik penemening nugas agar lebih produktif.
-            </p>
-        </header>
+        <form id="loginForm">
+          <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+            <label for="namaUser">Masukkan Nama Anda:</label>
+            <input type="text" id="namaUser" placeholder="Contoh: Tari MMB PENS" required autocomplete="off">
+          </div>
+          <button type="submit" class="btn-submit">Mulai Masuk ke Aplikasi ➔</button>
+        </form>
+      </div>
+    </section>
 
-        <!-- TAMPILAN 1: SELAMAT DATANG / LOGIN -->
-        <section id="view-login" class="card" style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);">
-            <h2 style="color: #4f46e5; margin-top: 0; margin-bottom: 8px;">🚀 Selamat Datang di Bubulist</h2>
-            <p style="color: #64748b; margin-bottom: 24px; font-size: 14px;">Kelola tugas kuliah dan aktivitas harianmu dengan lebih terstruktur dan interaktif.</p>
-            
-            <div style="margin-bottom: 20px;">
-                <label for="namaUser" style="display: block; font-weight: 600; margin-bottom: 8px; color: #334155; font-size: 14px;">Masukkan Nama Anda:</label>
-                <input type="text" id="namaUser" placeholder="Contoh: Tari MMB PENS" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; box-sizing: border-box; font-size: 14px;">
-                <span id="errorLogin" style="color: #ef4444; font-size: 12px; display: none; margin-top: 5px;">Nama tidak boleh kosong!</span>
-            </div>
-            
-            <button id="loginForm" style="width: 100%; padding: 12px; background: #7c3aed; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 15px;">Mulai Masuk ke Aplikasi →</button>
-        </section>
+    <!-- TAMPILAN 2: DASHBOARD / TUGAS -->
+    <section id="view-tugas" class="view-section" hidden style="display: none;">
+      <div style="margin-bottom: 15px; font-weight: 600; color: #475569;">
+        👋 Halo, <span id="salamNama" style="color: var(--primary);">Pengguna</span>! Selamat Berproses.
+      </div>
+      <div class="dashboard-container">
 
-        <!-- TAMPILAN 2: BERANDA / DASHBOARD UTAMA -->
-        <section id="view-beranda" class="card" hidden style="display: none; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);">
-            <h2 id="salamNama" style="color: #4f46e5; margin-top: 0;">Halo, Tari!</h2>
-            <p style="color: #64748b; margin-bottom: 20px; font-size: 14px;">Yuk selesaikan tugas-tugasmu hari ini dengan penuh semangat.</p>
-
-            <div style="display: flex; gap: 15px; margin-bottom: 25px;">
-                <div style="flex: 1; background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
-                    <h4 style="margin: 0 0 5px 0; color: #64748b; font-size: 13px;">Total Tugas</h4>
-                    <p id="angkaStat" style="margin: 0; font-size: 24px; font-weight: bold; color: #7c3aed;">0</p>
-                </div>
-                <div style="flex: 1; background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
-                    <h4 style="margin: 0 0 5px 0; color: #64748b; font-size: 13px;">Progress Selesai</h4>
-                    <p id="isiProgres" style="margin: 0; font-size: 24px; font-weight: bold; color: #10b981;">0%</p>
-                </div>
+        <!-- KARTU TAMBAH TUGAS -->
+        <div class="card">
+          <h1>➕ Tambah Tugas</h1>
+          <form id="taskForm">
+            <div class="form-group">
+              <label for="taskInput">Nama Tugas</label>
+              <input type="text" id="taskInput" placeholder="Contoh: Praktikum Pemrograman Visual" autocomplete="off">
+              <span class="error-message" id="errorTask"></span>
             </div>
 
-            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                <button onclick="gantiMenu('tugas')" style="flex: 1; padding: 12px; background: #7c3aed; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">📝 Kelola Tugas</button>
-                <button onclick="gantiMenu('musik')" style="flex: 1; padding: 12px; background: #db2777; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">🎵 Temen Nugas</button>
-            </div>
-        </section>
-
-        <!-- TAMPILAN 3: KELOLA TUGAS -->
-        <section id="view-tugas" class="card" hidden style="display: none; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);">
-            <h2 style="color: #4f46e5; margin-top: 0;">📝 Daftar Pencatat Tugas</h2>
-            <p style="color: #64748b; margin-bottom: 20px; font-size: 14px;">Tambahkan tugas kuliahmu di sini agar tidak ada yang terlewat.</p>
-
-            <form id="taskForm" style="margin-bottom: 20px;">
-                <div style="margin-bottom: 12px;">
-                    <input type="text" id="taskInput" placeholder="Nama Tugas / Mata Kuliah..." style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; box-sizing: border-box;">
-                    <span id="errorTask" style="color: #ef4444; font-size: 12px; display: none; margin-top: 4px;">Judul tugas wajib diisi!</span>
-                </div>
-                
-                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                    <select id="prioritySelect" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; background: white;">
-                        <option value="Penting">Penting</option>
-                        <option value="Normal">Normal</option>
-                        <option value="Santai">Santai</option>
-                    </select>
-                    <input type="date" id="deadlineInput" style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; box-sizing: border-box;">
-                </div>
-                <span id="errorDeadline" style="color: #ef4444; font-size: 12px; display: none; margin-bottom: 10px;">Tanggal deadline wajib diisi!</span>
-
-                <button type="submit" style="width: 100%; padding: 10px; background: #7c3aed; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Tambah Tugas</button>
-            </form>
-
-            <div id="loadingState" style="text-align: center; color: #64748b; display: none;">Memuat data...</div>
-            <div id="emptyState" style="text-align: center; color: #94a3b8; padding: 15px; font-size: 14px;">Belum ada tugas yang ditambahkan.</div>
-            
-            <ul id="taskList" style="list-style: none; padding: 0; margin: 0; max-height: 200px; overflow-y: auto;"></ul>
-
-            <button onclick="gantiMenu('beranda')" style="margin-top: 20px; padding: 8px 15px; background: #64748b; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">← Kembali ke Beranda</button>
-        </section>
-
-        <!-- TAMPILAN 4: MUSIK (Playlist Temen Nugas) -->
-        <section id="view-musik" class="card" hidden style="display: none; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);">
-            <h2 style="color: #4f46e5; margin-top: 0;">🎧 Temen Nugas Biar Gak Gabut</h2>
-            <p style="color: #64748b; margin-bottom: 20px; font-size: 14px;">Pilih musik santai kesukaanmu buat nemenin ngoding tugas PENS.</p>
-
-            <div style="margin-bottom: 15px;">
-                <label for="playlist-select" style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; color: #334155;">Pilih Playlist Lagu:</label>
-                <select id="playlist-select" onchange="gantiLagu(this)" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; background: white;">
-                    <option value="iniabadi.mp3">Ini Abadi</option>
-                    <option value="aboutyou.mp3">About You</option>
-                    <option value="Dinda.mp3">Dinda</option>
-                </select>
+            <div class="form-group">
+              <label for="prioritySelect">Tingkat Prioritas</label>
+              <select id="prioritySelect">
+                <option value="">-- Pilih Prioritas --</option>
+                <option value="Rendah">Rendah</option>
+                <option value="Sedang">Sedang</option>
+                <option value="Tinggi">Tinggi</option>
+              </select>
+              <span class="error-message" id="errorPriority"></span>
             </div>
 
-            <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center;">
-                <audio id="audio-player" controls style="width: 100%;">
-                    <source id="audio-source" src="iniabadi.mp3" type="audio/mpeg">
-                    Browser kamu tidak mendukung pemutar audio.
-                </audio>
+            <div class="form-group">
+              <label for="deadlineInput">Deadline Tanggal</label>
+              <input type="date" id="deadlineInput">
+              <span class="error-message" id="errorDeadline"></span>
             </div>
 
-            <button onclick="gantiMenu('beranda')" style="margin-top: 20px; padding: 8px 15px; background: #64748b; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">← Kembali ke Beranda</button>
-        </section>
+            <button type="submit" class="btn-submit">Simpan Tugas</button>
 
-    </main>
+            <div class="hint">
+              💡 <b>Pintasan:</b> Tekan <code>Enter</code> pada kolom nama tugas untuk langsung menyimpan.
+            </div>
+          </form>
+        </div>
 
-    <script src="script.js"></script>
+        <!-- KARTU DAFTAR TUGAS -->
+        <div class="card">
+          <h2>📋 Daftar Tugas Anda</h2>
+          <div id="loadingState" class="state-box" style="display: none;">
+            <div class="spinner"></div>
+            <p>Menyimpan tugas baru...</p>
+          </div>
+          <div id="emptyState" class="state-box">
+            <p>🎈 Belum ada tugas tersimpan.<br>Gunakan form di sebelah kiri untuk membuat tugas pertama!</p>
+          </div>
+          <ul id="taskList"></ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TAMPILAN 3: STATISTIK -->
+    <section id="view-statistik" class="view-section" hidden style="display: none;">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <h2>📊 Statistik Penyelesaian Tugas</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 12px;">Tugas Selesai: <strong id="angkaStat">0</strong>%</p>
+        <div class="progres-bar-container" role="progressbar" style="height: 16px; background: #cbd5e1; border-radius: 8px; overflow: hidden;">
+          <div id="isiProgres" style="height: 100%; width: 0%; background: var(--primary); transition: width 300ms ease-out;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAMPILAN 4: TENTANG (Hanya Informasi Pengembang & Profil) -->
+    <section id="view-tentang" class="view-section" hidden style="display: none;">
+      <div class="card" style="max-width: 700px; margin: 0 auto;">
+        <h2>ℹ️ Tentang Aplikasi & Pengembang</h2>
+        <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+          <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=400&auto=format&fit=crop&q=80" 
+               alt="Ilustrasi kolaborasi pengembangan aplikasi web" 
+               style="width: 150px; height: 150px; object-fit: cover; border-radius: 12px;"
+               onerror="this.src='https://via.placeholder.com/150?text=Error'">
+          <div style="flex: 1; min-width: 220px;">
+            <p><b>BubuList</b> adalah aplikasi manajemen tugas berbasis web yang dirancang untuk membantu pengguna mengorganisasi, melacak, dan memprioritaskan kegiatan harian secara efisien dan interaktif.
+
+Aplikasi ini dikembangkan sebagai bagian dari pemenuhan Tugas Praktikum Pemrograman Visual di Politeknik Elektronika Negeri Surabaya (PENS). Mengusung konsep antarmuka modern yang responsif dan ramah pengguna.</p>
+            <p>Pengembang: Tari</p>
+            <p>Program Studi: Multimedia dan Broadcasting (MMB)</p>
+            <p>Institusi: Politeknik Elektronika Negeri Surabaya (PENS)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAMPILAN 5: MUSIK (Card Terpisah Khusus Playlist Temen Nugas) -->
+    <section id="view-musik" class="view-section" hidden style="display: none;">
+      <div class="card" style="max-width: 600px; margin: 0 auto;">
+        <h2>🎧 Temen Nugas Biar Gak Gabut</h2>
+        <p style="color: #64748b; margin-bottom: 20px;">Pilih musik santai kesukaanmu buat nemenin ngerjain to-do list biar makin fokus dan asyik!</p>
+        
+        <!-- Pilihan Playlist Lagu -->
+        <div style="margin-bottom: 15px;">
+          <label for="playlist-select" style="display: block; font-weight: 600; margin-bottom: 8px;">Pilih Playlist Musik:</label>
+          <select id="playlist-select" onchange="gantiLagu(this)" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; background: white; font-size: 0.95rem;">
+            <option value="iniabadi.mp3">Lagu Utama - Ini Abadi</option>
+            <option value="aboutyou.mp3">Lofi Chill - Santai</option>
+            <option value="Dinda.mp3">Lofi Beats - Fokus</option>
+          </select>
+        </div>
+
+        <!-- Pemutar Audio -->
+        <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0;">
+          <audio id="audio-player" controls style="width: 100%;">
+            <source id="audio-source" src="iniabadi.mp3" type="audio/mpeg">
+            Peramban tidak mendukung audio.
+          </audio>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
