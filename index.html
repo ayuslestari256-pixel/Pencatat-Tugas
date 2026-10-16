@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TaskManager Pro - Terpadu</title>
+  <title>BubuList- Terpadu</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
   <!-- NAVIGASI UTAMA (Muncul setelah masuk aplikasi) -->
   <header class="main-header" id="mainHeader" style="display: none; justify-content: space-between; align-items: center; max-width: 1000px; margin: 20px auto; padding: 12px 20px; background: white; border-radius: 14px; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08); border: 1px solid var(--border);">
     <div class="brand">
-      <h2 style="margin:0; font-size: 1.1rem; color: var(--primary);">📌 TaskManager Pro</h2>
+      <h2 style="margin:0; font-size: 1.1rem; color: var(--primary);">📌 BubuList</h2>
     </div>
     <nav class="nav-tabs" style="display: flex; gap: 8px;">
       <button type="button" class="tab-btn aktif" data-target="view-tugas" style="background: var(--primary); color: white; border: 1px solid #cbd5e1; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;">📋 Tugas</button>
@@ -25,7 +25,7 @@
     <!-- TAMPILAN 1: BERANDA / HALAMAN DEPAN & LOGIN -->
     <section id="view-beranda" class="view-section aktif" style="display: block; text-align: center; padding-top: 40px;">
       <div class="card" style="max-width: 500px; margin: 0 auto; padding: 40px;">
-        <h1 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--primary);">🚀 Selamat Datang di TaskManager Pro</h1>
+        <h1 style="font-size: 1.8rem; margin-bottom: 10px; color: var(--primary);">🚀 Selamat Datang di Bubulist</h1>
         <p style="color: #64748b; margin-bottom: 24px;">Kelola tugas kuliah dan aktivitas harianmu dengan lebih terstruktur dan interaktif.</p>
         
         <form id="loginForm">
@@ -41,7 +41,7 @@
     <!-- TAMPILAN 2: DASHBOARD / TUGAS (Sesuai setingan aslimu) -->
     <section id="view-tugas" class="view-section" hidden style="display: none;">
       <div style="margin-bottom: 15px; font-weight: 600; color: #475569;">
-        👋 Halo, <span id="salamNama" style="color: var(--primary);">Pengguna</span>! Selamat bekerja.
+        👋 Halo, <span id="salamNama" style="color: var(--primary);">Pengguna</span>! Selamat Berproses.
       </div>
       <div class="dashboard-container">
 
@@ -117,7 +117,16 @@
                style="width: 150px; height: 150px; object-fit: cover; border-radius: 12px;"
                onerror="this.src='https://via.placeholder.com/150?text=Error'">
           <div style="flex: 1; min-width: 220px;">
-            <p><b>TaskManager Pro</b> dikembangkan untuk memenuhi Tugas Praktikum Pemrograman Visual (PENS).</p>
+            <p><b>BubuList</b> BubuList adalah aplikasi manajemen tugas berbasis web yang dirancang untuk membantu pengguna mengorganisasi, melacak, dan memprioritaskan kegiatan harian secara efisien dan interaktif.
+
+Aplikasi ini dikembangkan sebagai bagian dari pemenuhan Tugas Praktikum Pemrograman Visual di Politeknik Elektronika Negeri Surabaya (PENS). Mengusung konsep antarmuka modern yang responsif dan ramah pengguna.
+</p>
+            <P>Pengembang: Tari</P>
+
+<P>Program Studi: Multimedia dan Broadcasting (MMB)
+</P>
+<P>Institusi: Politeknik Elektronika Negeri Surabaya (PENS)</P>
+
             <div style="margin-top: 10px; background: white; padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
               <p style="font-size: 0.8rem; font-weight: 600; margin: 0 0 6px 0;">🔊 Audio Pengantar:</p>
              <audio controls style="width: 100%;">
