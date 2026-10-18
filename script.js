@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // TAMBAH TUGAS BARU
+    // TAMBAH TUGAS BARU (Minimal 3 Huruf)
     if (taskForm) {
         taskForm.addEventListener("submit", function(e) {
             e.preventDefault();
@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let adaError = false;
 
-            if (judul === "") {
-                errorTask.textContent = "Nama tugas wajib diisi!";
+            if (judul.length < 3) {
+                errorTask.textContent = "Nama tugas minimal 3 huruf!";
                 adaError = true;
             } else {
                 errorTask.textContent = "";
@@ -123,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     judul: judul,
                     prioritas: prioritas,
                     deadline: deadline,
+                    status: "Belum",
                     selesai: false
                 };
 
@@ -163,13 +164,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 const li = document.createElement("li");
                 li.style.cssText = "background: #f8fafc; padding: 12px 15px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;";
                 
+                let textDecoration = "none";
+                let textColor = "#1e293b";
+                if (tugas.status === "Selesai") {
+                    textDecoration = "line-through";
+                    textColor = "#94a3b8";
+                }
+
                 li.innerHTML = `
                     <div>
-                        <span style="font-weight: 600; text-decoration: ${tugas.selesai ? 'line-through' : 'none'}; color: ${tugas.selesai ? '#94a3b8' : '#1e293b'};">${tugas.judul}</span>
-                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">Prioritas: <b>${tugas.prioritas}</b> | Deadline: ${tugas.deadline}</div>
+                        <span style="font-weight: 600; text-decoration: ${textDecoration}; color: ${textColor};">${tugas.judul}</span>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
+                            Prioritas: <b>${tugas.prioritas}</b> | Deadline: ${tugas.deadline} | Status: <span style="font-weight: 600; color: ${tugas.status === 'Selesai' ? '#10b981' : (tugas.status === 'On Progress' ? '#f59e0b' : '#64748b')}">${tugas.status || 'Belum'}</span>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 8px;">
-                        <button onclick="toggleSelesai(${tugas.id})" style="padding: 6px 12px; background: ${tugas.selesai ? '#f59e0b' : '#10b981'}; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600;">${tugas.selesai ? 'Batal' : 'Selesai'}</button>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <select onchange="ubahStatus(${tugas.id}, this.value)" style="padding: 5px; font-size: 11px; border-radius: 5px; border: 1px solid #cbd5e1; background: white;">
+                            <option value="Belum" ${tugas.status === 'Belum' ? 'selected' : ''}>Belum</option>
+                            <option value="On Progress" ${tugas.status === 'On Progress' ? 'selected' : ''}>On Progress</option>
+                            <option value="Selesai" ${tugas.status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+                        </select>
                         <button onclick="hapusTugas(${tugas.id})" style="padding: 6px 12px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600;">Hapus</button>
                     </div>
                 `;
@@ -179,9 +193,14 @@ document.addEventListener("DOMContentLoaded", function() {
         hitungStatistik();
     }
 
-    // TOMBOL SELESAI
-    window.toggleSelesai = function(id) {
-        tasks = tasks.map(t => t.id === id ? { ...t, selesai: !t.selesai } : t);
+    // UBAH STATUS TUGAS
+    window.ubahStatus = function(id, statusBaru) {
+        tasks = tasks.map(t => {
+            if (t.id === id) {
+                return { ...t, status: statusBaru, selesai: (statusBaru === "Selesai") };
+            }
+            return t;
+        });
         renderTugas();
     };
 
